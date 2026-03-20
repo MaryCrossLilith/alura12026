@@ -1,23 +1,22 @@
 const avanca = document.querySelectorAll('.btn-proximo');
 
 avanca.forEach(button => {
-    button.addEventListener('click', function(){
+    button.addEventListener('click', function() {
         const atual = document.querySelector('.ativo');
-        const proximoPasso = 'passo-' + this.getAttribute('data-proximo');
+        if (!atual) {
+            console.error('Nenhum passo ativo encontrado!');
+            return;
+        }
+
+        const proximoPassoId = 'passo-' + this.dataset.proximo;
+        const proximoPasso = document.getElementById(proximoPassoId);
+
+        if (!proximoPasso) {
+            console.error(`Não existe elemento com id ${proximoPassoId}`);
+            return;
+        }
 
         atual.classList.remove('ativo');
-        document.getElementById(proximoPasso).classList.add('ativo');
-
-    })
-})
-
- const container = document.getElementById('container-link');
-
-// Cria o elemento de âncora (link)
-const link = document.createElement('a');
-
-link.target = '_blank'; // Abre em nova aba
-
-// Adiciona o link ao contêiner
-container.appendChild(link);
-
+        proximoPasso.classList.add('ativo');
+    });
+});
