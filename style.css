@@ -28,3 +28,11 @@ main {
 img {
     max-width: 90%;
 }
+
+.passo {
+    display: none;
+}
+
+.passo.ativo {
+    display:block;
+}
